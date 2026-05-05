@@ -2,11 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>حساب الأستاذ — المتحدون | 20260505170952</title>
+<title>حساب الأستاذ — المتحدون | 20260505191131</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -205,13 +202,6 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
 .filt-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;background:var(--bg2);border:1px solid var(--brd);border-radius:8px;margin-bottom:12px}.filt-btn{padding:4px 9px;border-radius:5px;border:1px solid var(--brd);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer}.filt-btn.active{background:rgba(232,196,106,.15);border-color:var(--gold);color:var(--gold);font-weight:700}.filt-sep{width:1px;height:14px;background:var(--brd)}.filt-date{background:var(--bg3);border:1px solid var(--brd);border-radius:5px;color:var(--t1);font-size:11px;padding:3px 6px;color-scheme:dark;max-width:130px}.filt-badge{font-size:9px;background:rgba(232,196,106,.18);color:var(--gold);border-radius:4px;padding:2px 6px;font-weight:700;display:none}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script>
-/* cache buster */
-var _cv='20260505170952';
-var _sv=sessionStorage.getItem('_cv');
-if(_sv&&_sv!==_cv){sessionStorage.setItem('_cv',_cv);location.reload(true);}
-else if(!_sv){sessionStorage.setItem('_cv',_cv);}
-</script>
 </head>
 <body>
 
@@ -219,7 +209,7 @@ else if(!_sv){sessionStorage.setItem('_cv',_cv);}
   <div class="logo">GL</div>
   <div class="brand">
     <b>المتحدون للمقاولات العامة</b>
-    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/05  17:09:52</span>
+    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/05  19:11:31</span>
   </div>
   <div class="top-search" onclick="openS()">⌕</div>
 </div>
@@ -902,6 +892,8 @@ function buildExpDonut(){
   };
   var BUCKET_COLORS={direct:'#ff6b6b',opex:'#f97316',interest:'#a29bfe',tax:'#fd79a8',other:'#636e72'};
   var BUCKET_LABELS={direct:'ت مباشرة',opex:'OPEX',interest:'فوائد',tax:'ضرائب',other:'أخرى'};
+
+  /* ── collect every expense account individually ── */
   var accs=[];
   DAT.forEach(function(acc){
     if(acc.cat!=='expenses')return;
@@ -916,69 +908,127 @@ function buildExpDonut(){
     else if(matchK(acc.name,PL_KEYS.opex))bucket='opex';
     accs.push({name:acc.name,v:dr,bucket:bucket});
   });
+
   var total=accs.reduce(function(s,a){return s+a.v;},0);
   if(!total)return;
+
+  /* sort by value desc */
   accs.sort(function(a,b){return b.v-a.v;});
-  var byBucket={direct:0,opex:0,interest:0,tax:0,other:0};
-  accs.forEach(function(a){byBucket[a.bucket]+=a.v;});
-  var dLabels=[],dData=[],dColors=[];
-  ['direct','opex','interest','tax','other'].forEach(function(k){
-    if(!byBucket[k])return;
-    dLabels.push(BUCKET_LABELS[k]);dData.push(byBucket[k]);dColors.push(BUCKET_COLORS[k]);
+
+  /* build per-account colors (shade of bucket color) */
+  var bucketIdx={};
+  var labels=[],data=[],colors=[];
+  accs.forEach(function(a){
+    var base=BUCKET_COLORS[a.bucket];
+    /* generate shade: darker for later accounts in same bucket */
+    bucketIdx[a.bucket]=(bucketIdx[a.bucket]||0)+1;
+    var idx=bucketIdx[a.bucket]-1;
+    /* lighten/darken via opacity variation */
+    var alpha=Math.max(0.55,1-idx*0.12);
+    labels.push(a.name);
+    data.push(a.v);
+    colors.push(base);
+    a.color=base;a.alpha=alpha;
   });
+
   function S2(n){if(Math.abs(n)>=1e9)return(n/1e9).toFixed(1)+'B';if(Math.abs(n)>=1e6)return(n/1e6).toFixed(1)+'M';if(Math.abs(n)>=1e3)return(n/1e3).toFixed(0)+'K';return n.toFixed(0);}
+
   _mkChart('ch-exp-donut','doughnut',{
-    labels:dLabels,
-    datasets:[{data:dData,
-      backgroundColor:dColors.map(function(clr){return clr+'bb';}),
-      borderColor:dColors,borderWidth:2,hoverOffset:14,hoverBorderWidth:2.5}]
+    labels:labels,
+    datasets:[{
+      data:data,
+      backgroundColor:accs.map(function(a,i){
+        var idx=Object.keys(bucketIdx).indexOf(a.bucket);
+        return a.color+'bb';
+      }),
+      borderColor:accs.map(function(a){return a.color;}),
+      borderWidth:1.5,hoverOffset:14,hoverBorderWidth:2.5
+    }]
   },{
-    cutout:'65%',plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:function(ctx){var pct=(ctx.raw/total*100).toFixed(1);return ' '+S2(ctx.raw)+' ('+pct+'٪)';}}}},
-    animation:{animateRotate:true,animateScale:true,duration:750,easing:'easeOutQuart'}
+    cutout:'62%',
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{
+        title:function(ctx){return ctx[0].label.length>28?ctx[0].label.slice(0,28)+'…':ctx[0].label;},
+        label:function(ctx){
+          var pct=(ctx.raw/total*100).toFixed(1);
+          var bkt=accs[ctx.dataIndex]?BUCKET_LABELS[accs[ctx.dataIndex].bucket]:'';
+          return ' '+S2(ctx.raw)+' ('+pct+'٪) · '+bkt;
+        }
+      }}
+    },
+    animation:{animateRotate:true,animateScale:true,duration:800,easing:'easeOutQuart'}
   });
-  /* bucket legend */
+
+  /* ── Legend: grouped by bucket, per-account rows ── */
   var leg=document.getElementById('exp-legend');
   if(leg){
     leg.innerHTML='';
-    var sortedBkts=dLabels.map(function(l,i){return{l:l,v:dData[i],c:dColors[i]};}).sort(function(a,b){return b.v-a.v;});
-    sortedBkts.forEach(function(item){
-      var pct=(item.v/total*100).toFixed(1);
-      var div=document.createElement('div');
-      div.style.cssText='background:rgba(255,255,255,0.03);border:1px solid '+item.c+'33;border-radius:8px;padding:8px 12px';
-      div.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><div style="display:flex;align-items:center;gap:7px"><div style="width:10px;height:10px;border-radius:50%;background:'+item.c+'"></div><span style="font-size:12px;color:#c8d0e0;font-weight:600">'+item.l+'</span></div><span style="font-family:var(--mono);font-size:12px;color:'+item.c+'">'+S2(item.v)+'</span></div><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+item.c+';border-radius:2px;opacity:.8"></div></div><span style="font-size:10px;color:var(--t3);flex-shrink:0">'+pct+'٪</span></div>';
-      leg.appendChild(div);
+    /* group */
+    var groups={};
+    var groupOrder=[];
+    accs.forEach(function(a){
+      if(!groups[a.bucket]){groups[a.bucket]=[];groupOrder.push(a.bucket);}
+      groups[a.bucket].push(a);
     });
-  }
-  /* detail body - hidden by default */
-  var body=document.getElementById('exp-detail-body');
-  if(body){
-    var groups={};var groupOrder=[];
-    accs.forEach(function(a){if(!groups[a.bucket]){groups[a.bucket]=[];groupOrder.push(a.bucket);}groups[a.bucket].push(a);});
+    /* remove dup order */
     groupOrder=groupOrder.filter(function(v,i){return groupOrder.indexOf(v)===i;});
-    var html='<div class="wf-buckets" style="margin-top:10px">';
+
     groupOrder.forEach(function(bkt){
-      var items=groups[bkt];var base=BUCKET_COLORS[bkt];
+      var items=groups[bkt];
       var bktTotal=items.reduce(function(s,a){return s+a.v;},0);
-      html+='<div class="wf-bucket"><div class="wf-bucket-hdr" style="background:'+base+'22;color:'+base+'">'+BUCKET_LABELS[bkt]+'<span>'+S2(bktTotal)+'</span></div>';
-      items.forEach(function(a){
+      var bktPct=(bktTotal/total*100).toFixed(1);
+      var baseColor=BUCKET_COLORS[bkt];
+
+      /* bucket header */
+      var hdr=document.createElement('div');
+      hdr.style.cssText='padding:6px 10px;border-radius:7px 7px 0 0;display:flex;justify-content:space-between;align-items:center;background:'+baseColor+'22;border:1px solid '+baseColor+'44;margin-top:8px;cursor:pointer;user-select:none';
+      hdr.innerHTML=(
+        '<div style="display:flex;align-items:center;gap:6px">'
+        +'<div style="width:8px;height:8px;border-radius:50%;background:'+baseColor+'"></div>'
+        +'<span style="font-size:11px;font-weight:700;color:'+baseColor+'">'+BUCKET_LABELS[bkt]+'</span>'
+        +'</div>'
+        +'<span style="font-family:var(--mono);font-size:11px;color:'+baseColor+'">'+S2(bktTotal)+' <span style="opacity:.6;font-size:9px">('+bktPct+'٪)</span></span>'
+      );
+
+      /* accounts container */
+      var acc_cont=document.createElement('div');
+      acc_cont.style.cssText='border:1px solid '+baseColor+'22;border-top:none;border-radius:0 0 7px 7px;overflow:hidden;margin-bottom:2px';
+
+      items.forEach(function(a,i){
         var pct=(a.v/total*100).toFixed(1);
-        var nm=a.name.length>24?a.name.slice(0,24)+'…':a.name;
-        html+='<div class="wf-bucket-row"><span class="nm">'+nm+'</span><span class="acc-v" style="color:'+base+'">'+S2(a.v)+' ('+pct+'٪)</span></div>';
+        var nm=a.name.length>22?a.name.slice(0,22)+'…':a.name;
+        var row=document.createElement('div');
+        row.style.cssText='padding:5px 10px;display:flex;flex-direction:column;gap:3px;border-top:'+(i>0?'1px solid rgba(255,255,255,0.04)':'none');
+        row.innerHTML=(
+          '<div style="display:flex;justify-content:space-between;align-items:center">'
+          +'<span style="font-size:10px;color:#8892aa">'+nm+'</span>'
+          +'<span style="font-family:var(--mono);font-size:10px;color:#c8d0e0">'+S2(a.v)+'</span>'
+          +'</div>'
+          +'<div style="height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden">'
+          +'<div style="height:100%;width:'+pct+'%;background:'+baseColor+';border-radius:2px;opacity:.7"></div>'
+          +'</div>'
+        );
+        acc_cont.appendChild(row);
       });
-      html+='</div>';
+
+      leg.appendChild(hdr);
+      leg.appendChild(acc_cont);
     });
-    html+='</div>';
-    body.innerHTML=html;
-    body.style.display='none';/* force hidden after building */
   }
-  /* insight */
-  var top=accs[0];var topPct=(top.v/total*100).toFixed(1);
+
+  /* ── Auto Insight ── */
+  var top=accs[0];
+  var topPct=(top.v/total*100).toFixed(1);
   var nm=top.name.length>20?top.name.slice(0,20)+'…':top.name;
-  var bigBkt=Object.keys(byBucket).filter(function(k){return byBucket[k]>0;}).reduce(function(mx,k){return byBucket[k]>byBucket[mx]?k:mx;});
-  var bigBktPct=(byBucket[bigBkt]/total*100).toFixed(1);
+  /* bucket totals */
+  var bktTotals={};
+  accs.forEach(function(a){bktTotals[a.bucket]=(bktTotals[a.bucket]||0)+a.v;});
+  var bigBkt=Object.keys(bktTotals).reduce(function(mx,k){return bktTotals[k]>bktTotals[mx]?k:mx;},Object.keys(bktTotals)[0]);
+  var bigBktPct=(bktTotals[bigBkt]/total*100).toFixed(1);
+  var ins='إجمالي: <b>'+S2(total)+'</b> · أكبر فئة: <b>'+BUCKET_LABELS[bigBkt]+'</b> ('+bigBktPct+'٪) · أكبر حساب: <b>'+nm+'</b> ('+topPct+'٪)';
   var el=document.getElementById('exp-insight');
-  if(el){el.innerHTML='إجمالي: <b>'+S2(total)+'</b> · أكبر فئة: <b>'+BUCKET_LABELS[bigBkt]+'</b> ('+bigBktPct+'٪) · أكبر حساب: <b>'+nm+'</b> ('+topPct+'٪)';el.className='ins-box red';}
+  if(el){el.innerHTML=ins;el.className='ins-box red';}
 }
 function buildCharts(){
   var DAT=typeof DATA!=='undefined'?DATA:D;

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>حساب الأستاذ — المتحدون | 20260513132100</title>
+<title>حساب الأستاذ — المتحدون | 20260513140922</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -214,7 +214,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
   <div class="logo">GL</div>
   <div class="brand">
     <b>المتحدون للمقاولات العامة</b>
-    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/13  13:21:00</span>
+    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/13  14:09:22</span>
   </div>
   <div class="top-search" onclick="openS()">⌕</div>
 </div>
@@ -460,17 +460,20 @@ function fcat(cat){
 
 var _mlf={l1:'',l2:'',l3:''};
 function _mUniq(rows,key){return[...new Set(rows.map(function(e){return e[key];}).filter(Boolean))].sort(function(a,b){return isNaN(+a)||isNaN(+b)?a.localeCompare(b,'ar'):+a-+b;});}
-function _mRows(a){var r=filtEntries(a.entries||[]);if(_mlf.l1)r=r.filter(function(e){return e.sub1===_mlf.l1;});if(_mlf.l2)r=r.filter(function(e){return e.sub2===_mlf.l2;});if(_mlf.l3)r=r.filter(function(e){return e.sub3===_mlf.l3;});return r;}
-function _mRows1(a){var r=filtEntries(a.entries||[]);if(_mlf.l1)r=r.filter(function(e){return e.sub1===_mlf.l1;});return r;}
-function _mRows2(a){var r=_mRows1(a);if(_mlf.l2)r=r.filter(function(e){return e.sub2===_mlf.l2;});return r;}
-function _mSetSel(selId,lblId,grpId,label,vals,cur){
+function _mFilt(r,val,key){if(!val)return r;if(val==='__blank__')return r.filter(function(e){return !e[key];});return r.filter(function(e){return e[key]===val;});}
+function _mRows(a){var r=filtEntries(a.entries||[]);r=_mFilt(r,_mlf.l1,'sub1');r=_mFilt(r,_mlf.l2,'sub2');r=_mFilt(r,_mlf.l3,'sub3');return r;}
+function _mRows1(a){return _mFilt(filtEntries(a.entries||[]),_mlf.l1,'sub1');}
+function _mRows2(a){return _mFilt(_mRows1(a),_mlf.l2,'sub2');}
+function _mSetSel(selId,lblId,grpId,label,vals,hasBlanks,cur){
   var sg=document.getElementById(grpId);if(!sg)return;
-  if(!label||!vals.length){sg.style.display='none';return;}
+  if(!label){sg.style.display='none';return;}
+  if(!vals.length&&!hasBlanks){sg.style.display='none';return;}
   sg.style.display='flex';
   var lb=document.getElementById(lblId);if(lb)lb.textContent=label;
   var sel=document.getElementById(selId);if(!sel)return;
   var html='<option value="">الكل</option>';
   vals.forEach(function(v){html+='<option value="'+v+'"'+(v===cur?' selected':'')+'>'+v+'</option>';});
+  if(hasBlanks) html+='<option value="__blank__"'+(cur==='__blank__'?' selected':'')+'>— فارغ —</option>';
   sel.innerHTML=html;sel.value=cur||'';
 }
 function _mRender(a,rows){
@@ -485,21 +488,23 @@ function _mRender(a,rows){
   document.getElementById('st-c').textContent=rows.length+' قيد'+(_isFil?' (مفلتر)':'');
   var el=document.getElementById('elist');el.innerHTML='';
   if(!rows.length){el.innerHTML='<div style="text-align:center;padding:48px;color:var(--t3)"><div style="font-size:28px;margin-bottom:8px">📭</div><div>لا توجد قيود</div></div>';return;}
+  var _rb=0;
   rows.forEach(function(e){
-    var bc=Math.abs(e.bal)<.1?'z':(e.bal>0?'p':'n');
+    _rb+=e.dr-e.cr;
+    var bc=Math.abs(_rb)<.1?'z':(_rb>0?'p':'n');
     var sub='';
     if(a.l1_label&&e.sub1)sub+='<span style="font-size:9px;color:var(--teal);font-weight:600;margin-left:4px">'+a.l1_label+':'+e.sub1+'</span>';
     if(a.l2_label&&e.sub2)sub+='<span style="font-size:9px;color:var(--blue);margin-left:4px">'+a.l2_label+':'+e.sub2+'</span>';
     if(a.l3_label&&e.sub3)sub+='<span style="font-size:9px;color:var(--gold);margin-left:4px">'+a.l3_label+':'+e.sub3+'</span>';
     var subDiv=sub?'<div style="margin-top:2px">'+sub+'</div>':'';
     var card=document.createElement('div');card.className='ec';
-    card.innerHTML='<div class="et"><div class="ed">'+(e.desc||'—')+subDiv+'</div><div class="eb '+bc+'">'+N(e.bal,2)+'</div></div><div class="em"><span class="esq">#'+e.seq+'</span><span class="edt">'+e.date+'</span><span class="eo">'+(e.opp||'')+'</span>'+(e.dr>0?'<span class="edr">↑'+S(e.dr)+'</span>':'')+(e.cr>0?' <span class="ecr">↓'+S(e.cr)+'</span>':'')+'</div>';
+    card.innerHTML='<div class="et"><div class="ed">'+(e.desc||'—')+subDiv+'</div><div class="eb '+bc+'">'+N(_rb,2)+'</div></div><div class="em"><span class="esq">#'+e.seq+'</span><span class="edt">'+e.date+'</span><span class="eo">'+(e.opp||'')+'</span>'+(e.dr>0?'<span class="edr">↑'+S(e.dr)+'</span>':'')+(e.cr>0?' <span class="ecr">↓'+S(e.cr)+'</span>':'')+'</div>';
     el.appendChild(card);
   });
   el.scrollTop=0;document.getElementById('main').scrollTop=0;
 }
-function mOnL1(v){_mlf.l1=v;_mlf.l2='';_mlf.l3='';var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mSetSel('m-l2-sel','m-l2-lbl','m-sg2',a.l2_label,_mUniq(_mRows1(a),'sub2'),'');_mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(_mRows2(a),'sub3'),'');_mRender(a,_mRows(a));}
-function mOnL2(v){_mlf.l2=v;_mlf.l3='';var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(_mRows2(a),'sub3'),'');_mRender(a,_mRows(a));}
+function mOnL1(v){_mlf.l1=v;_mlf.l2='';_mlf.l3='';var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mSetSel('m-l2-sel','m-l2-lbl','m-sg2',a.l2_label,_mUniq(_mRows1(a),'sub2'),_mRows1(a).some(function(e){return !e.sub2;}),'');_mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(_mRows2(a),'sub3'),_mRows2(a).some(function(e){return !e.sub3;}),'');_mRender(a,_mRows(a));}
+function mOnL2(v){_mlf.l2=v;_mlf.l3='';var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(_mRows2(a),'sub3'),_mRows2(a).some(function(e){return !e.sub3;}),'');_mRender(a,_mRows(a));}
 function mOnL3(v){_mlf.l3=v;var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mRender(a,_mRows(a));}
 
 function openA(id){
@@ -512,9 +517,9 @@ function openA(id){
   document.getElementById('st-n').textContent=a.name;
   window._openAccId=id; _mlf={l1:'',l2:'',l3:''};
   var ms=document.getElementById('m-sels');if(ms)ms.style.display=a.l1_label?'flex':'none';
-  _mSetSel('m-l1-sel','m-l1-lbl','m-sg1',a.l1_label,_mUniq(filtEntries(a.entries||[]),'sub1'),'');
-  _mSetSel('m-l2-sel','m-l2-lbl','m-sg2',a.l2_label,_mUniq(filtEntries(a.entries||[]),'sub2'),'');
-  _mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(filtEntries(a.entries||[]),'sub3'),'');
+  _mSetSel('m-l1-sel','m-l1-lbl','m-sg1',a.l1_label,_mUniq(filtEntries(a.entries||[]),'sub1'),filtEntries(a.entries||[]).some(function(e){return !e.sub1;}),'');
+  _mSetSel('m-l2-sel','m-l2-lbl','m-sg2',a.l2_label,_mUniq(filtEntries(a.entries||[]),'sub2'),filtEntries(a.entries||[]).some(function(e){return !e.sub2;}),'');
+  _mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(filtEntries(a.entries||[]),'sub3'),filtEntries(a.entries||[]).some(function(e){return !e.sub3;}),'');
   _mRender(a,_mRows(a));
 }
 

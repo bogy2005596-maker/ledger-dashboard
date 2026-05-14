@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>حساب الأستاذ — المتحدون | 20260514112526</title>
+<title>حساب الأستاذ — المتحدون | 20260514133918</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -215,7 +215,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
   <div class="logo">GL</div>
   <div class="brand">
     <b>المتحدون للمقاولات العامة</b>
-    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/14  11:25:26</span>
+    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/14  13:39:18</span>
   </div>
   <div class="top-search" onclick="openS()">⌕</div>
 </div>
@@ -519,7 +519,7 @@ function _buildPrintHTML(acc, rows, kDr, kCr, kNet, parts, extraTh, extraKey, nc
     var xtd='';
     extraKey.forEach(function(k,ki){
       var lcol=ki===0?'color:#1565C0':ki===1?'color:#00695C':'color:#E65100';
-      xtd+='<td style="'+lcol+';font-weight:700;text-align:center">'+(e[k]||'—')+'</td>';
+      xtd+='<td style="'+lcol+';font-weight:700;text-align:center;white-space:nowrap">'+(e[k]||'—')+'</td>';
     });
     trs+='<tr style="'+bg+'"><td style="color:#555;text-align:center">'+e.seq+'</td>'
       +'<td style="color:#333;text-align:center">'+e.date+'</td>'
@@ -534,11 +534,13 @@ function _buildPrintHTML(acc, rows, kDr, kCr, kNet, parts, extraTh, extraKey, nc
     +'<title>حساب الأستاذ — '+acc.name+'</title>'
     +'<style>'
     +'*{margin:0;padding:0;box-sizing:border-box}'
+    +'*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}'
     +'body{background:#fff;color:#111;font-family:Calibri,Arial,sans-serif;font-size:12px;line-height:1.5;direction:rtl}'
-    +'table{width:100%;border-collapse:collapse}'
+    +'table{width:100%;border-collapse:collapse;table-layout:auto}'
     // thead يتكرر تلقائياً في كل صفحة عند الطباعة
-    +'thead{display:table-header-group}'
+    +'thead{display:table-header-group!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
     +'tbody{display:table-row-group}'
+    +'@media print{thead{display:table-header-group!important}}'
     +'.h1{background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;font-family:Calibri,Arial,sans-serif}'
     +'.h2{background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:13px;font-family:Calibri,Arial,sans-serif}'
     +'.kpi-row td{padding:3px 6px;text-align:center;border:1px solid #ccc}'

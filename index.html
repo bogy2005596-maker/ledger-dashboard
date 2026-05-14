@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>حساب الأستاذ — المتحدون | 20260514140507</title>
+<title>حساب الأستاذ — المتحدون | 20260514140902</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -215,7 +215,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
   <div class="logo">GL</div>
   <div class="brand">
     <b>المتحدون للمقاولات العامة</b>
-    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/14  14:05:07</span>
+    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/14  14:09:02</span>
   </div>
   <div class="top-search" onclick="openS()">⌕</div>
 </div>
@@ -510,59 +510,92 @@ function mOnL2(v){_mlf.l2=v;_mlf.l3='';var a=D.find(function(x){return x.id===wi
 function mOnL3(v){_mlf.l3=v;var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mRender(a,_mRows(a));}
 
 function _buildPrintHTML(acc, rows, kDr, kCr, kNet, parts, extraTh, extraKey, nc){
-  var filRow=parts.length?'<tr><td colspan="'+nc+'" style="background:#fff8dc;color:#6d4c00;text-align:center;font-size:9px;padding:3px;font-weight:600">🔍 '+parts.join(' · ')+'</td></tr>':'';
+  var filTxt=parts.length?'🔍 '+parts.join(' · '):'';
   var _rb=0,trs='';
   rows.forEach(function(e,i){
     _rb+=e.dr-e.cr;
-    var bg=i%2===1?'background:#EEF4FB;':'';
-    var rc=Math.abs(_rb)<0.1?'color:#555':(_rb>0?'color:#1F4E79':'color:#C00000');
+    var bg=i%2===1?'#EEF4FB':'#ffffff';
+    var rc=Math.abs(_rb)<0.1?'#555':(_rb>0?'#1F4E79':'#C00000');
     var xtd='';
     extraKey.forEach(function(k,ki){
-      var lcol=ki===0?'color:#1565C0':ki===1?'color:#00695C':'color:#E65100';
-      xtd+='<td style="'+lcol+';font-weight:700;white-space:nowrap;text-align:center">'+(e[k]||'—')+'</td>';
+      var lcol=ki===0?'#1565C0':ki===1?'#00695C':'#E65100';
+      xtd+='<td style="color:'+lcol+';font-weight:700;white-space:nowrap;text-align:center;background:'+bg+'">'+(e[k]||'—')+'</td>';
     });
-    trs+='<tr style="'+bg+'"><td style="color:#555;text-align:center;white-space:nowrap">'+e.seq+'</td>'
-      +'<td style="color:#333;text-align:center;white-space:nowrap">'+e.date+'</td>'
-      +'<td style="color:#111;word-break:break-word">'+e.desc+'</td>'
-      +'<td style="color:#444;white-space:nowrap">'+e.opp+'</td>'
-      +'<td style="color:#1F4E79;text-align:right;font-weight:600;white-space:nowrap">'+(e.dr>0?N(e.dr,2):'—')+'</td>'
-      +'<td style="color:#C00000;text-align:right;font-weight:600;white-space:nowrap">'+(e.cr>0?N(e.cr,2):'—')+'</td>'
-      +'<td style="'+rc+';text-align:right;font-weight:700;white-space:nowrap">'+N(_rb,2)+'</td>'
+    trs+='<tr>'
+      +'<td style="color:#555;text-align:center;white-space:nowrap;background:'+bg+'">'+e.seq+'</td>'
+      +'<td style="color:#333;text-align:center;white-space:nowrap;background:'+bg+'">'+e.date+'</td>'
+      +'<td style="color:#111;word-break:break-word;background:'+bg+'">'+e.desc+'</td>'
+      +'<td style="color:#444;white-space:nowrap;background:'+bg+'">'+e.opp+'</td>'
+      +'<td style="color:#1F4E79;text-align:right;font-weight:600;white-space:nowrap;background:'+bg+'">'+(e.dr>0?N(e.dr,2):'—')+'</td>'
+      +'<td style="color:#C00000;text-align:right;font-weight:600;white-space:nowrap;background:'+bg+'">'+(e.cr>0?N(e.cr,2):'—')+'</td>'
+      +'<td style="color:'+rc+';text-align:right;font-weight:700;white-space:nowrap;background:'+bg+'">'+N(_rb,2)+'</td>'
       +xtd+'</tr>';
   });
-  // column header row — الوحيد اللي بيتكرر في كل صفحة
-  var colHdr='<tr style="background:#1F3864">'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap">م</th>'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap">التاريخ</th>'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri">البيان / الوصف</th>'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap">الحساب المقابل</th>'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap">مدين</th>'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap">دائن</th>'
-    +'<th style="color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap">الرصيد</th>'
-    +extraTh+'</tr>';
+  var colHdrCells='<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold">م</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold">التاريخ</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;font-weight:bold">البيان / الوصف</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold">الحساب المقابل</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold">مدين</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold">دائن</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold">الرصيد</td>'
+    + (extraTh ? extraTh.replace(/<th/g,'<td style="background:#1F3864;color:#fff;padding:5px 4px;border:1px solid #1F3864;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold"').replace(/<\/th>/g,'</td>') : '');
   return '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">'
     +'<title>حساب الأستاذ — '+acc.name+'</title>'
     +'<style>'
     +'*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}'
-    +'body{background:#fff;color:#111;font-family:Calibri,Arial,sans-serif;font-size:12px;direction:rtl;padding:0}'
+    +'body{background:#fff;color:#111;font-family:Calibri,Arial,sans-serif;font-size:12px;direction:rtl}'
     +'table{width:100%;border-collapse:collapse;table-layout:auto}'
     +'td,th{padding:5px 7px;border:1px solid #D9E1F2;font-family:Calibri,Arial,sans-serif;font-size:12px}'
-    // اسم الشركة + KPIs: في tbody الأول — تظهر في الصفحة الأولى فقط
+    +'.page-hdr{page-break-before:always}'
     +'@page{margin:7mm;size:A4 landscape}'
     +'</style></head><body>'
-    // جدول منفصل للهيدر (اسم الشركة + KPIs) — بدون thead عشان ميتكررش
-    +'<table style="margin-bottom:4px"><tbody>'
+    +'<table id="main-table"><tbody id="tb">'
+    // صف اسم الشركة
     +'<tr><td colspan="'+nc+'" style="background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;font-family:Calibri">شركة المتحدون للمقاولات العامة — أحمد كامل</td></tr>'
     +'<tr><td colspan="'+nc+'" style="background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:14px;font-family:Calibri">حساب الأستاذ — '+acc.name+' — 2026'+(parts.length?' · '+parts.join(' · '):'')+'</td></tr>'
-    +'<tr style="background:#FFF2CC"><td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79;font-family:Calibri">'+N(kDr,2)+'</div></td>'
+    // KPIs
+    +'<tr style="background:#FFF2CC">'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79;font-family:Calibri">'+N(kDr,2)+'</div></td>'
     +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي الدائن</div><div style="font-size:13px;font-weight:700;color:#C00000;font-family:Calibri">'+N(kCr,2)+'</div></td>'
     +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555;font-family:Calibri">صافي الرصيد</div><div style="font-size:13px;font-weight:700;color:'+(kNet>=0?'#1F4E79':'#C00000')+';font-family:Calibri">'+(kNet>=0?'+':'')+N(kNet,2)+'</div></td>'
     +'<td colspan="'+(nc-6)+'" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555;font-family:Calibri">عدد القيود</div><div style="font-size:13px;font-weight:700;color:#333;font-family:Calibri">'+rows.length+'</div></td></tr>'
-    +filRow
+    +(filTxt?'<tr><td colspan="'+nc+'" style="background:#fff8dc;color:#6d4c00;text-align:center;font-size:9px;padding:3px">'+filTxt+'</td></tr>':'')
+    // column header row
+    +'<tr id="col-hdr">'+colHdrCells+'</tr>'
+    // data rows
+    +trs
     +'</tbody></table>'
-    // جدول البيانات مع thead — صف اسماء الأعمدة فقط هو اللي بيتكرر
-    +'<table><thead>'+colHdr+'</thead><tbody>'+trs+'</tbody></table>'
-    +'<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script>'
+    +'<script>'
+    // بعد render — نحسب كم صف في كل صفحة ونحشر header كل page_rows صف
+    +'window.onload=function(){'
+    +'  var tb=document.getElementById("tb");'
+    +'  var rows=tb.rows;'
+    +'  var hdrH=0;'
+    // نحسب ارتفاع صفوف الهيدر (أول 4-5 صفوف: شركة + حساب + KPIs + filter + col-hdr)
+    +'  var hdrRows=5;'
+    +'  for(var i=0;i<Math.min(hdrRows,rows.length);i++) hdrH+=rows[i].offsetHeight;'
+    // ارتفاع الصفحة المطبوعة: A4 landscape = 210mm → ~794px بعد الهامش 14mm
+    +'  var pageH=794-hdrH;'
+    +'  var cumH=0,insertBefore=[];'
+    +'  for(var i=hdrRows;i<rows.length;i++){'
+    +'    cumH+=rows[i].offsetHeight;'
+    +'    if(cumH>pageH){insertBefore.push(i);cumH=rows[i].offsetHeight;}'
+    +'  }'
+    // إدراج header row قبل كل page break
+    +'  var colHdr=document.getElementById("col-hdr");'
+    +'  var offset=0;'
+    +'  insertBefore.forEach(function(idx){'
+    +'    var newHdr=colHdr.cloneNode(true);'
+    +'    newHdr.id="";'
+    +'    newHdr.style.pageBreakBefore="always";'
+    +'    newHdr.cells[0].style.paddingTop="8px";'
+    +'    tb.insertBefore(newHdr,rows[idx+offset]);'
+    +'    offset++;'
+    +'  });'
+    +'  window.print();'
+    +'  window.onafterprint=function(){window.close();};'
+    +'}'
+    +'<\/script>'
     +'</body></html>';
 }
 

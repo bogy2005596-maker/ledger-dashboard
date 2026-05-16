@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>حساب الأستاذ — المتحدون | 20260516123934</title>
+<title>حساب الأستاذ — المتحدون | 20260516124801</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -215,7 +215,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
   <div class="logo">GL</div>
   <div class="brand">
     <b>المتحدون للمقاولات العامة</b>
-    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/16  12:39:34</span>
+    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/16  12:48:01</span>
   </div>
   <div class="top-search" onclick="openS()">⌕</div>
 </div>
@@ -511,64 +511,83 @@ function mOnL3(v){_mlf.l3=v;var a=D.find(function(x){return x.id===window._openA
 
 function _buildPrintHTML(acc, rows, kDr, kCr, kNet, parts, extraTh, extraKey, nc){
   var filTxt=parts.length?'🔍 '+parts.join(' · '):'';
-  var _rb=0,trs='';
+
+  var colHdrHTML='<tr style="background:#1F3864">'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">م</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">التاريخ</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;font-weight:bold;border:1px solid #1F3864">البيان / الوصف</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">الحساب المقابل</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">مدين</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">دائن</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">الرصيد</td>'
+    +(extraTh?extraTh.replace(/<th/g,'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864"').replace(/<\/th>/g,'</td>'):'')
+    +'</tr>';
+
+  // حساب وزن كل صف بناءً على طول البيان فقط
+  // الحرف العربي ~ 7px عرضاً، عمود البيان ~ 210px → ~30 حرف في السطر
+  function rowW(e){
+    var d=(e.desc||'').length;
+    if(d<=30) return 1;
+    if(d<=60) return 2;
+    if(d<=90) return 3;
+    return 4;
+  }
+
+  // CAP = الطاقة الاستيعابية للصفحة (بالوزن)
+  // الصفحة الأولى أقل بسبب الهيدر
+  var CAP_FIRST=28, CAP_NEXT=40;
+  var pages=[], cur=[], curW=0, _rb=0;
   rows.forEach(function(e,i){
+    var cap=(pages.length===0)?CAP_FIRST:CAP_NEXT;
+    var w=rowW(e);
+    if(cur.length>0 && curW+w>cap){ pages.push(cur); cur=[]; curW=0; }
     _rb+=e.dr-e.cr;
     var bg=i%2===1?'#EEF4FB':'#ffffff';
     var rc=Math.abs(_rb)<0.1?'#555':(_rb>0?'#1F4E79':'#C00000');
     var xtd='';
     extraKey.forEach(function(k,ki){
       var lcol=ki===0?'#1565C0':ki===1?'#00695C':'#E65100';
-      xtd+='<td style="color:'+lcol+';font-weight:700;white-space:nowrap;text-align:center;background:'+bg+'">'+(e[k]||'—')+'</td>';
+      xtd+='<td style="color:'+lcol+';font-weight:700;white-space:nowrap;text-align:center;background:'+bg+';border:1px solid #D9E1F2;padding:2px 4px">'+(e[k]||'—')+'</td>';
     });
-    trs+='<tr style="background:'+bg+'">'
-      +'<td style="color:#555;text-align:center;white-space:nowrap">'+e.seq+'</td>'
-      +'<td style="color:#333;text-align:center;white-space:nowrap">'+e.date+'</td>'
-      +'<td style="color:#111;word-break:break-word">'+e.desc+'</td>'
-      +'<td style="color:#444;white-space:nowrap">'+e.opp+'</td>'
-      +'<td style="color:#1F4E79;text-align:right;font-weight:600;white-space:nowrap">'+(e.dr>0?N(e.dr,2):'—')+'</td>'
-      +'<td style="color:#C00000;text-align:right;font-weight:600;white-space:nowrap">'+(e.cr>0?N(e.cr,2):'—')+'</td>'
-      +'<td style="color:'+rc+';text-align:right;font-weight:700;white-space:nowrap">'+N(_rb,2)+'</td>'
-      +xtd+'</tr>';
+    cur.push('<tr style="background:'+bg+'">'
+      +'<td style="color:#555;text-align:center;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+e.seq+'</td>'
+      +'<td style="color:#333;text-align:center;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+e.date+'</td>'
+      +'<td style="color:#111;word-break:break-word;border:1px solid #D9E1F2;padding:2px 4px">'+e.desc+'</td>'
+      +'<td style="color:#444;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+e.opp+'</td>'
+      +'<td style="color:#1F4E79;text-align:right;font-weight:600;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+(e.dr>0?N(e.dr,2):'—')+'</td>'
+      +'<td style="color:#C00000;text-align:right;font-weight:600;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+(e.cr>0?N(e.cr,2):'—')+'</td>'
+      +'<td style="color:'+rc+';text-align:right;font-weight:700;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+N(_rb,2)+'</td>'
+      +xtd+'</tr>');
+    curW+=w;
   });
+  if(cur.length) pages.push(cur);
+
+  var tablesHTML='';
+  pages.forEach(function(pageRows,pi){
+    if(pi>0) tablesHTML+='<div style="page-break-before:always;-webkit-page-break-before:always"></div>';
+    tablesHTML+='<table style="width:100%;border-collapse:collapse;table-layout:auto"><tbody>'
+      +colHdrHTML+pageRows.join('')+'</tbody></table>';
+  });
+
   return '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">'
     +'<title>حساب الأستاذ — '+acc.name+'</title>'
     +'<style>'
     +'*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}'
     +'body{background:#fff;color:#111;font-family:Calibri,Arial,sans-serif;font-size:12px;direction:rtl}'
-    +'table{width:100%;border-collapse:collapse;table-layout:auto}'
-    +'td,th{padding:2px 4px;border:1px solid #D9E1F2;font-family:Calibri,Arial,sans-serif;font-size:12px}'
-    +'thead{display:table-header-group!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}'
-    +'tbody{display:table-row-group}'
-    +'@media print{thead{display:table-header-group!important;-webkit-print-color-adjust:exact!important}}'
     +'@page{margin:7mm;size:A4 landscape}'
     +'</style></head><body>'
-    // جدول الهيدر الأول (شركة + KPIs) - بدون thead عشان ميتكررش
-    +'<table style="margin-bottom:3px"><tbody>'
-    +'<tr><td colspan="'+nc+'" style="background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;border:none">شركة المتحدون للمقاولات العامة — أحمد كامل</td></tr>'
-    +'<tr><td colspan="'+nc+'" style="background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:14px;border:none">حساب الأستاذ — '+acc.name+' — 2026'+(parts.length?' · '+parts.join(' · '):'')+'</td></tr>'
+    +'<table style="width:100%;border-collapse:collapse;margin-bottom:3px"><tbody>'
+    +'<tr><td colspan="'+nc+'" style="background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;font-family:Calibri;border:none">شركة المتحدون للمقاولات العامة — أحمد كامل</td></tr>'
+    +'<tr><td colspan="'+nc+'" style="background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:14px;font-family:Calibri;border:none">حساب الأستاذ — '+acc.name+' — 2026'+(parts.length?' · '+parts.join(' · '):'')+'</td></tr>'
     +'<tr>'
-    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79">'+N(kDr,2)+'</div></td>'
-    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555">إجمالي الدائن</div><div style="font-size:13px;font-weight:700;color:#C00000">'+N(kCr,2)+'</div></td>'
-    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555">صافي الرصيد</div><div style="font-size:13px;font-weight:700;color:'+(kNet>=0?'#1F4E79':'#C00000')+'">'+(kNet>=0?'+':'')+N(kNet,2)+'</div></td>'
-    +'<td colspan="'+(nc-6)+'" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555">عدد القيود</div><div style="font-size:13px;font-weight:700;color:#333">'+rows.length+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79;font-family:Calibri">'+N(kDr,2)+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي الدائن</div><div style="font-size:13px;font-weight:700;color:#C00000;font-family:Calibri">'+N(kCr,2)+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555;font-family:Calibri">صافي الرصيد</div><div style="font-size:13px;font-weight:700;color:'+(kNet>=0?'#1F4E79':'#C00000')+';font-family:Calibri">'+(kNet>=0?'+':'')+N(kNet,2)+'</div></td>'
+    +'<td colspan="'+(nc-6)+'" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555;font-family:Calibri">عدد القيود</div><div style="font-size:13px;font-weight:700;color:#333;font-family:Calibri">'+rows.length+'</div></td>'
     +'</tr>'
     +(filTxt?'<tr><td colspan="'+nc+'" style="background:#fff8dc;color:#6d4c00;text-align:center;font-size:9px;padding:3px;border:1px solid #ffe08a">'+filTxt+'</td></tr>':'')
     +'</tbody></table>'
-    // جدول البيانات مع thead — بيتكرر على Chrome، ممكن ميتكررش على Safari
-    +'<table><thead>'
-    +'<tr style="background:#1F3864">'
-    +'<th style="color:#fff;border:1px solid #1F3864;white-space:nowrap">م</th>'
-    +'<th style="color:#fff;border:1px solid #1F3864;white-space:nowrap">التاريخ</th>'
-    +'<th style="color:#fff;border:1px solid #1F3864">البيان / الوصف</th>'
-    +'<th style="color:#fff;border:1px solid #1F3864;white-space:nowrap">الحساب المقابل</th>'
-    +'<th style="color:#fff;border:1px solid #1F3864;white-space:nowrap">مدين</th>'
-    +'<th style="color:#fff;border:1px solid #1F3864;white-space:nowrap">دائن</th>'
-    +'<th style="color:#fff;border:1px solid #1F3864;white-space:nowrap">الرصيد</th>'
-    +extraTh
-    +'</tr>'
-    +'</thead>'
-    +'<tbody>'+trs+'</tbody></table>'
+    +tablesHTML
     +'<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script>'
     +'</body></html>';
 }

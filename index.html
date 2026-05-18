@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>حساب الأستاذ — المتحدون | 20260518172646</title>
+<title>حساب الأستاذ — المتحدون | 20260518174543</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -107,7 +107,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
 }
 .acc-row-l{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
 .acc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.acc-nm{font-size:13px;font-weight:600;color:var(--t1);
+.acc-nm{font-size:12px;font-weight:600;color:var(--t1);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .acc-row-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
 .acc-net{font-family:var(--mono);font-size:12px;font-weight:500}
@@ -123,9 +123,10 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
 .abk{width:34px;height:34px;background:var(--bg3);border:1px solid var(--brd);
   border-radius:8px;display:flex;align-items:center;justify-content:center;
   cursor:pointer;font-size:17px;color:var(--t2);flex-shrink:0}
+.m-print-btn{background:transparent;border:1px solid var(--teal);border-radius:8px;padding:0 10px;height:34px;font-size:11px;color:var(--teal);cursor:pointer;display:none;white-space:nowrap}
 .abk:active{background:var(--bg)}
 .aht{flex:1;min-width:0}
-.aht h2{font-size:14px;font-weight:700;color:var(--t1);
+.aht h2{font-size:13px;font-weight:700;color:var(--t1);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .aht span{font-size:10px;color:var(--t2)}
 .akpis{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;
@@ -137,14 +138,14 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
 .mob-sel:focus{border-color:var(--gold)}
 .ak{background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:9px 11px}
 .ak .al{font-size:9px;color:var(--t2);margin-bottom:3px;font-weight:700;text-transform:uppercase}
-.ak .av{font-family:var(--mono);font-size:13px;font-weight:500}
+.ak .av{font-family:var(--mono);font-size:12px;font-weight:500}
 
 .entries{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .ec{padding:11px 14px;border-bottom:1px solid var(--brd)}
 .ec:active{background:var(--bg3)}
 .et{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:5px}
-.ed{font-size:13px;color:var(--t1);line-height:1.4;flex:1}
-.eb{font-family:var(--mono);font-size:13px;font-weight:600;white-space:nowrap}
+.ed{font-size:12px;color:var(--t1);line-height:1.4;flex:1}
+.eb{font-family:var(--mono);font-size:12px;font-weight:600;white-space:nowrap}
 .eb.p{color:var(--green)}.eb.n{color:var(--red)}.eb.z{color:var(--t3)}
 .em{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .edt{font-family:var(--mono);font-size:10px;color:var(--t3)}
@@ -176,14 +177,14 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
 .sov.open{display:flex}
 .siw{display:flex;gap:8px;align-items:center;margin-bottom:10px}
 .si2{flex:1;background:var(--bg3);border:1px solid var(--brd2);border-radius:10px;
-  padding:9px 14px;font-family:var(--font);font-size:14px;color:var(--t1);outline:none}
+  padding:9px 14px;font-family:var(--font);font-size:13px;color:var(--t1);outline:none}
 .si2::placeholder{color:var(--t3)}
-.sx{color:var(--gold);font-size:13px;cursor:pointer;padding:4px;white-space:nowrap}
+.sx{color:var(--gold);font-size:12px;cursor:pointer;padding:4px;white-space:nowrap}
 .sr{flex:1;overflow-y:auto}
 .sitem{display:flex;align-items:center;justify-content:space-between;
   padding:13px 4px;border-bottom:1px solid var(--brd);cursor:pointer}
 .sitem:active{opacity:.7}
-.sin{font-size:14px;color:var(--t1)}
+.sin{font-size:13px;color:var(--t1)}
 .snet{font-family:var(--mono);font-size:12px}
 .snet.p{color:var(--green)}.snet.n{color:var(--red)}.snet.z{color:var(--t3)}
 
@@ -198,7 +199,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
 .mt:active{background:var(--bg4)}
 
 .hidden{display:none!important}
-#vrep{padding:14px;overflow-y:auto;display:none;flex-direction:column}.rep-filt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;background:var(--bg2);border:1px solid var(--brd);border-radius:8px;margin-bottom:14px}.rep-btn{padding:4px 9px;border-radius:5px;border:1px solid var(--brd);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer}.rep-btn.on{background:rgba(232,196,106,.15);border-color:var(--gold);color:var(--gold);font-weight:700}.rep-sep{width:1px;height:14px;background:var(--brd)}.rep-date{background:var(--bg3);border:1px solid var(--brd);border-radius:5px;color:var(--t1);font-size:11px;padding:3px 6px;color-scheme:dark;max-width:130px}.chart-card{background:var(--bg2);border:1px solid var(--brd);border-radius:10px;padding:14px;margin-bottom:14px}.chart-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:10px;display:flex;align-items:center;gap:6px}.chart-wrap{position:relative;height:200px}.chart-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}.ck{background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:9px 12px}.ck-lbl{font-size:10px;color:var(--t3);margin-bottom:3px}.ck-val{font-family:var(--mono);font-size:14px;font-weight:600}
+#vrep{padding:14px;overflow-y:auto;display:none;flex-direction:column}.rep-filt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;background:var(--bg2);border:1px solid var(--brd);border-radius:8px;margin-bottom:14px}.rep-btn{padding:4px 9px;border-radius:5px;border:1px solid var(--brd);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer}.rep-btn.on{background:rgba(232,196,106,.15);border-color:var(--gold);color:var(--gold);font-weight:700}.rep-sep{width:1px;height:14px;background:var(--brd)}.rep-date{background:var(--bg3);border:1px solid var(--brd);border-radius:5px;color:var(--t1);font-size:11px;padding:3px 6px;color-scheme:dark;max-width:130px}.chart-card{background:var(--bg2);border:1px solid var(--brd);border-radius:10px;padding:14px;margin-bottom:14px}.chart-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:10px;display:flex;align-items:center;gap:6px}.chart-wrap{position:relative;height:200px}.chart-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}.ck{background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:9px 12px}.ck-lbl{font-size:10px;color:var(--t3);margin-bottom:3px}.ck-val{font-family:var(--mono);font-size:13px;font-weight:600}
 .ins-box{border-right:3px solid var(--gold);background:rgba(232,196,106,.06);border-radius:0 6px 6px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--t2);line-height:1.6}.ins-box b{color:var(--gold)}.ins-box.green{border-right-color:#51cf66;background:rgba(81,207,102,.06)}.ins-box.red{border-right-color:#ff6b6b;background:rgba(255,107,107,.06)}.ins-box.teal{border-right-color:#4ecdc4;background:rgba(78,205,196,.06)}.chart-wrap.xtra{height:260px}.wf-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.wf-leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--t3)}.wf-dot{width:10px;height:10px;border-radius:2px}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:2px}
@@ -214,7 +215,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
   <div class="logo">GL</div>
   <div class="brand">
     <b>المتحدون للمقاولات العامة</b>
-    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/18  17:26:46</span>
+    <span style="font-size:10px;color:var(--t2)">حساب الأستاذ العام · أحمد كامل · آخر تحديث: 2026/05/18  17:45:43</span>
   </div>
   <div class="top-search" onclick="openS()">⌕</div>
 </div>
@@ -254,6 +255,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--fon
       <div class="ah">
         <div class="abk" onclick="goBack()">&#8594;</div>
         <div class="aht"><h2 id="a-nm"></h2><span id="a-ct"></span></div>
+        <button class="m-print-btn" id="m-print-btn" onclick="printAcc()">🖨</button>
       </div>
       <div class="mob-sels" id="m-sels" style="display:none">
         <div class="mob-sel-grp" id="m-sg1" style="display:none">
@@ -394,25 +396,55 @@ function buildSecs(accs){
 
   }
 function printCF(){
-  var N2=function(n){return n?new Intl.NumberFormat('en-US',{minimumFractionDigits:2}).format(n):'—';};
-  var totDr=CF_DATA.reduce(function(s,r){return s+r.dr;},0);
-  var totCr=CF_DATA.reduce(function(s,r){return s+r.cr;},0);
-  var lastBal=CF_DATA.length?CF_DATA[CF_DATA.length-1].bal:0;
-  var ML=['','يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-  var trs='';var lastM=null;
-  CF_DATA.forEach(function(r,i){
-    if(r.month!==lastM){lastM=r.month;trs+='<tr style="background:#2E75B6"><td colspan="7" style="color:#fff;padding:4px 8px;font-weight:bold;font-size:12px;font-family:Calibri">📅 شهر '+(ML[r.month]||r.month)+'</td></tr>';}
-    var bg=i%2===0?'#fff':'#EEF4FB';var bc=r.bal>=0?'#1F4E79':'#C00000';
-    trs+='<tr style="background:'+bg+'"><td style="color:#555;text-align:center;padding:2px 4px;border:1px solid #D9E1F2">'+r.seq+'</td><td style="color:#444;text-align:center;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+(ML[r.month]||r.month||'—')+'</td><td style="padding:2px 4px;border:1px solid #D9E1F2;word-break:break-word">'+r.desc+'</td><td style="color:#444;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+(r.opp||'—')+'</td><td style="color:#1F4E79;text-align:right;font-weight:600;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+N2(r.dr)+'</td><td style="color:#C00000;text-align:right;font-weight:600;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+N2(r.cr)+'</td><td style="color:'+bc+';text-align:right;font-weight:700;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+N2(r.bal)+'</td></tr>';
+  var acc=window._cfAcc;if(!acc)return;
+  var rows=acc.entries||[];
+  var isFil=!!(FILT.from||FILT.to);
+  var kDr=rows.reduce(function(s,e){return s+e.dr;},0);
+  var kCr=rows.reduce(function(s,e){return s+e.cr;},0);
+  var kNet=isFil?(kDr-kCr):acc.net;
+  if(!isFil){kDr=acc.dr;kCr=acc.cr;}
+  var _rb=0,trs='';
+  rows.forEach(function(e,i){
+    _rb+=e.dr-e.cr;
+    var bg=i%2===1?'#EEF4FB':'#fff';
+    var rc=Math.abs(_rb)<0.1?'#555':(_rb>0?'#1F4E79':'#C00000');
+    trs+='<tr style="background:'+bg+'"><td style="color:#555;text-align:center;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+e.seq+'</td>'
+      +'<td style="color:#333;text-align:center;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+e.date+'</td>'
+      +'<td style="color:#111;padding:2px 4px;border:1px solid #D9E1F2;word-break:break-word">'+e.desc+'</td>'
+      +'<td style="color:#444;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+e.opp+'</td>'
+      +'<td style="color:#1F4E79;text-align:right;font-weight:600;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+(e.dr>0?N(e.dr,2):'—')+'</td>'
+      +'<td style="color:#C00000;text-align:right;font-weight:600;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+(e.cr>0?N(e.cr,2):'—')+'</td>'
+      +'<td style="color:'+rc+';text-align:right;font-weight:700;padding:2px 4px;border:1px solid #D9E1F2;white-space:nowrap">'+N(_rb,2)+'</td></tr>';
   });
-  var html='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>Cash Flow</title><style>*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{background:#fff;font-family:Calibri,Arial,sans-serif;font-size:12px;direction:rtl}table{width:100%;border-collapse:collapse;table-layout:auto}thead{display:table-header-group}@page{margin:7mm;size:A4 landscape}</style></head><body>'
-    +'<table style="margin-bottom:3px"><tbody><tr><td colspan="7" style="background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;border:none">شركة المتحدون للمقاولات العامة — أحمد كامل</td></tr><tr><td colspan="7" style="background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:14px;border:none">التدفقات النقدية — Cash Flow — 2026</td></tr>'
-    +'<tr><td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79">'+N2(totDr)+'</div></td><td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555">إجمالي الدائن</div><div style="font-size:13px;font-weight:700;color:#C00000">'+N2(totCr)+'</div></td><td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555">صافي الرصيد</div><div style="font-size:13px;font-weight:700;color:'+(lastBal>=0?'#1F4E79':'#C00000')+'">'+N2(lastBal)+'</div></td><td style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555">عدد القيود</div><div style="font-size:13px;font-weight:700;color:#333">'+CF_DATA.length+'</div></td></tr></tbody></table>'
-    +'<table><thead><tr style="background:#1F3864"><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">#</th><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">الشهر</th><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864">البيان</th><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">الحساب المقابل</th><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">مدين</th><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">دائن</th><th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">الرصيد</th></tr></thead><tbody>'+trs+'</tbody></table>'
-    +'<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script></body></html>';
+  var html='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>Cash Flow</title>'
+    +'<style>*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}'
+    +'body{background:#fff;font-family:Calibri,Arial,sans-serif;font-size:12px;direction:rtl}'
+    +'table{width:100%;border-collapse:collapse;table-layout:auto}'
+    +'thead{display:table-header-group}'
+    +'@page{margin:7mm;size:A4 landscape}</style></head><body>'
+    +'<table style="margin-bottom:3px"><tbody>'
+    +'<tr><td colspan="7" style="background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;border:none">شركة المتحدون للمقاولات العامة — أحمد كامل</td></tr>'
+    +'<tr><td colspan="7" style="background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:14px;border:none">التدفقات النقدية — Cash Flow — 2026</td></tr>'
+    +'<tr>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79">'+N(kDr,2)+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555">إجمالي الدائن</div><div style="font-size:13px;font-weight:700;color:#C00000">'+N(kCr,2)+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555">صافي الرصيد</div><div style="font-size:13px;font-weight:700;color:'+(kNet>=0?'#1F4E79':'#C00000')+'">'+(kNet>=0?'+':'')+N(kNet,2)+'</div></td>'
+    +'<td style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555">عدد القيود</div><div style="font-size:13px;font-weight:700;color:#333">'+rows.length+'</div></td>'
+    +'</tr></tbody></table>'
+    +'<table><thead><tr style="background:#1F3864">'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">م</th>'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">التاريخ</th>'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864">البيان / الوصف</th>'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">الحساب المقابل</th>'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">مدين</th>'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">دائن</th>'
+    +'<th style="color:#fff;padding:3px 4px;border:1px solid #1F3864;white-space:nowrap">الرصيد</th>'
+    +'</tr></thead><tbody>'+trs+'</tbody></table>'
+    +'<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script>'
+    +'</body></html>';
   var w=window.open('','_blank');if(w){w.document.write(html);w.document.close();}
 }
-openCF(){
+function openCF(){
   /* يفتح view الحساب العادي بس بقيود الـ CF */
   const MONTHS=['','يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
   const N2=n=>n?new Intl.NumberFormat('en-US',{minimumFractionDigits:2}).format(n):'—';
@@ -422,6 +454,7 @@ openCF(){
   document.getElementById('vd').style.display='none';
   const va=document.getElementById('va');va.style.display='flex';va.style.flexDirection='column';va.style.height='100%';
   document.getElementById('a-nm').textContent='التدفقات النقدية — Cash Flow';
+  window._cfAcc={entries:CF_DATA.map(function(r){return{seq:r.seq,date:String(r.month||''),desc:r.desc,opp:r.acc||'',dr:r.dr||0,cr:r.cr||0};}),dr:totDr,cr:totCr,net:lastBal};
   var mpb=document.getElementById('m-print-btn');if(mpb){mpb.style.display='flex';mpb.onclick=function(){printCF();};}
   document.getElementById('a-ct').textContent='';
   document.getElementById('a-dr').textContent=N2(totDr);
@@ -527,9 +560,113 @@ function mOnL1(v){_mlf.l1=v;_mlf.l2='';_mlf.l3='';var a=D.find(function(x){retur
 function mOnL2(v){_mlf.l2=v;_mlf.l3='';var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mSetSel('m-l3-sel','m-l3-lbl','m-sg3',a.l3_label,_mUniq(_mRows2(a),'sub3'),_mRows2(a).some(function(e){return !e.sub3;}),'');_mRender(a,_mRows(a));}
 function mOnL3(v){_mlf.l3=v;var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;_mRender(a,_mRows(a));}
 
+function _buildPrintHTML(acc, rows, kDr, kCr, kNet, parts, extraTh, extraKey, nc){
+  var filTxt=parts.length?'🔍 '+parts.join(' · '):'';
+
+  var colHdrHTML='<tr style="background:#1F3864">'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">م</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">التاريخ</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;font-weight:bold;border:1px solid #1F3864">البيان / الوصف</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">الحساب المقابل</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">مدين</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">دائن</td>'
+    +'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864">الرصيد</td>'
+    +(extraTh?extraTh.replace(/<th/g,'<td style="background:#1F3864;color:#fff;padding:3px 4px;text-align:center;font-size:13px;font-family:Calibri;white-space:nowrap;font-weight:bold;border:1px solid #1F3864"').replace(/<\/th>/g,'</td>'):'')
+    +'</tr>';
+
+  // حساب وزن كل صف بناءً على طول البيان فقط
+  // الحرف العربي ~ 7px عرضاً، عمود البيان ~ 210px → ~30 حرف في السطر
+  function rowW(e){
+    var d=(e.desc||'').length;
+    if(d<=30) return 1;
+    if(d<=60) return 2;
+    if(d<=90) return 3;
+    return 4;
+  }
+
+  // CAP = الطاقة الاستيعابية للصفحة (بالوزن)
+  // الصفحة الأولى أقل بسبب الهيدر
+  var CAP_FIRST=28, CAP_NEXT=40;
+  var pages=[], cur=[], curW=0, _rb=0;
+  rows.forEach(function(e,i){
+    var cap=(pages.length===0)?CAP_FIRST:CAP_NEXT;
+    var w=rowW(e);
+    if(cur.length>0 && curW+w>cap){ pages.push(cur); cur=[]; curW=0; }
+    _rb+=e.dr-e.cr;
+    var bg=i%2===1?'#EEF4FB':'#ffffff';
+    var rc=Math.abs(_rb)<0.1?'#555':(_rb>0?'#1F4E79':'#C00000');
+    var xtd='';
+    extraKey.forEach(function(k,ki){
+      var lcol=ki===0?'#1565C0':ki===1?'#00695C':'#E65100';
+      xtd+='<td style="color:'+lcol+';font-weight:700;white-space:nowrap;text-align:center;background:'+bg+';border:1px solid #D9E1F2;padding:2px 4px">'+(e[k]||'—')+'</td>';
+    });
+    cur.push('<tr style="background:'+bg+'">'
+      +'<td style="color:#555;text-align:center;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+e.seq+'</td>'
+      +'<td style="color:#333;text-align:center;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+e.date+'</td>'
+      +'<td style="color:#111;word-break:break-word;border:1px solid #D9E1F2;padding:2px 4px">'+e.desc+'</td>'
+      +'<td style="color:#444;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+e.opp+'</td>'
+      +'<td style="color:#1F4E79;text-align:right;font-weight:600;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+(e.dr>0?N(e.dr,2):'—')+'</td>'
+      +'<td style="color:#C00000;text-align:right;font-weight:600;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+(e.cr>0?N(e.cr,2):'—')+'</td>'
+      +'<td style="color:'+rc+';text-align:right;font-weight:700;white-space:nowrap;border:1px solid #D9E1F2;padding:2px 4px">'+N(_rb,2)+'</td>'
+      +xtd+'</tr>');
+    curW+=w;
+  });
+  if(cur.length) pages.push(cur);
+
+  var tablesHTML='';
+  pages.forEach(function(pageRows,pi){
+    if(pi>0) tablesHTML+='<div style="page-break-before:always;-webkit-page-break-before:always"></div>';
+    tablesHTML+='<table style="width:100%;border-collapse:collapse;table-layout:auto"><tbody>'
+      +colHdrHTML+pageRows.join('')+'</tbody></table>';
+  });
+
+  return '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">'
+    +'<title>حساب الأستاذ — '+acc.name+'</title>'
+    +'<style>'
+    +'*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}'
+    +'body{background:#fff;color:#111;font-family:Calibri,Arial,sans-serif;font-size:12px;direction:rtl}'
+    +'@page{margin:7mm;size:A4 landscape}'
+    +'</style></head><body>'
+    +'<table style="width:100%;border-collapse:collapse;margin-bottom:3px"><tbody>'
+    +'<tr><td colspan="'+nc+'" style="background:#1F3864;color:#fff;text-align:center;padding:5px;font-size:13px;font-weight:bold;font-family:Calibri;border:none">شركة المتحدون للمقاولات العامة — أحمد كامل</td></tr>'
+    +'<tr><td colspan="'+nc+'" style="background:#2E75B6;color:#fff;text-align:center;padding:4px;font-size:14px;font-family:Calibri;border:none">حساب الأستاذ — '+acc.name+' — 2026'+(parts.length?' · '+parts.join(' · '):'')+'</td></tr>'
+    +'<tr>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي المدين</div><div style="font-size:13px;font-weight:700;color:#1F4E79;font-family:Calibri">'+N(kDr,2)+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#FFF2CC"><div style="font-size:11px;color:#555;font-family:Calibri">إجمالي الدائن</div><div style="font-size:13px;font-weight:700;color:#C00000;font-family:Calibri">'+N(kCr,2)+'</div></td>'
+    +'<td colspan="2" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555;font-family:Calibri">صافي الرصيد</div><div style="font-size:13px;font-weight:700;color:'+(kNet>=0?'#1F4E79':'#C00000')+';font-family:Calibri">'+(kNet>=0?'+':'')+N(kNet,2)+'</div></td>'
+    +'<td colspan="'+(nc-6)+'" style="padding:3px 6px;text-align:center;border:1px solid #ccc;background:#DEEAF1"><div style="font-size:11px;color:#555;font-family:Calibri">عدد القيود</div><div style="font-size:13px;font-weight:700;color:#333;font-family:Calibri">'+rows.length+'</div></td>'
+    +'</tr>'
+    +(filTxt?'<tr><td colspan="'+nc+'" style="background:#fff8dc;color:#6d4c00;text-align:center;font-size:9px;padding:3px;border:1px solid #ffe08a">'+filTxt+'</td></tr>':'')
+    +'</tbody></table>'
+    +tablesHTML
+    +'<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script>'
+    +'</body></html>';
+}
+
+function printAcc(){
+  var a=D.find(function(x){return x.id===window._openAccId;});if(!a)return;
+  var rows=_mRows(a);
+  var isFil=!!(FILT.from||FILT.to)||!!_mlf.l1||!!_mlf.l2||!!_mlf.l3;
+  var kDr=rows.reduce(function(s,e){return s+e.dr;},0);
+  var kCr=rows.reduce(function(s,e){return s+e.cr;},0);
+  var kNet=isFil?(kDr-kCr):a.net;if(!isFil){kDr=a.dr;kCr=a.cr;}
+  var extraTh='',extraKey=[];
+  if(a.l1_label){extraTh+='<th>'+a.l1_label+'</th>';extraKey.push('sub1');}
+  if(a.l2_label){extraTh+='<th>'+a.l2_label+'</th>';extraKey.push('sub2');}
+  if(a.l3_label){extraTh+='<th>'+a.l3_label+'</th>';extraKey.push('sub3');}
+  var nc=7+extraKey.length;
+  var parts=[];
+  if(FILT.from||FILT.to) parts.push((FILT.from||'—')+' — '+(FILT.to||'—'));
+  if(_mlf.l1&&a.l1_label) parts.push(a.l1_label+': '+_mlf.l1);
+  if(_mlf.l2&&a.l2_label) parts.push(a.l2_label+': '+_mlf.l2);
+  if(_mlf.l3&&a.l3_label) parts.push(a.l3_label+': '+_mlf.l3);
+  var html=_buildPrintHTML(a,rows,kDr,kCr,kNet,parts,extraTh,extraKey,nc);
+  var w=window.open('','_blank');if(w){w.document.write(html);w.document.close();}
+}
 function openA(id){
   const a=D.find(x=>x.id===id);if(!a)return;LAST=CUR;
   document.getElementById('vd').style.display='none';
+  var mpb=document.getElementById('m-print-btn');if(mpb)mpb.style.display='flex';
   const va=document.getElementById('va');va.style.display='flex';va.style.flexDirection='column';va.style.height='100%';
   const m=CM[a.cat]||{};
   document.getElementById('a-nm').textContent=a.name;
@@ -544,6 +681,7 @@ function openA(id){
 }
 
 function goBack(){
+  var mpb=document.getElementById('m-print-btn');if(mpb)mpb.style.display='none';
   document.getElementById('vd').style.display='block';
   document.getElementById('va').style.display='none';
   fcat(LAST);
